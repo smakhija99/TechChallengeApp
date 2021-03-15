@@ -29,9 +29,11 @@ WORKDIR /TechChallengeApp
 
 COPY assets ./assets
 COPY conf.toml ./conf.toml
+COPY script.sh ./script.sh
 
 COPY --from=build /tmp/swagger/dist ./assets/swagger
 COPY --from=build /swagger.json ./assets/swagger/swagger.json
 COPY --from=build /TechChallengeApp TechChallengeApp
 
-ENTRYPOINT [ "./TechChallengeApp" ]
+#ENTRYPOINT [ "./TechChallengeApp" ]
+CMD ["./script.sh"]
