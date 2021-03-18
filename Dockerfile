@@ -2,6 +2,7 @@ FROM golang:alpine AS build
 
 RUN apk add --no-cache curl git alpine-sdk
 
+
 ARG SWAGGER_UI_VERSION=3.20.9
 
 RUN dir=$(mktemp -d) \
@@ -35,5 +36,4 @@ COPY --from=build /tmp/swagger/dist ./assets/swagger
 COPY --from=build /swagger.json ./assets/swagger/swagger.json
 COPY --from=build /TechChallengeApp TechChallengeApp
 
-#ENTRYPOINT [ "./TechChallengeApp" ]
-CMD ["./script.sh"]
+ENTRYPOINT [ "./TechChallengeApp" ]
